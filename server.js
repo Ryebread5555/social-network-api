@@ -8,13 +8,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app
+app.use(require('./routes'));
 
 // setup mongo db 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
-  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 
 app.listen(PORT, () => console.log(`Connected on localhost:${PORT}`));
